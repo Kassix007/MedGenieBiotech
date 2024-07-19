@@ -65,6 +65,7 @@ dependencies:
   url_launcher_platform_interface: 2.3.2
   camera: ^0.11.0+1
   flutterflow_ui: ^0.3.1
+  flutter_keyboard_visibility: ^6.0.0
 
 
 dev_dependencies:
