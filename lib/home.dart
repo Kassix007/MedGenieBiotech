@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'home_page.dart';
+import 'SignIn/SignIn.dart';
 class SplashWidget extends StatefulWidget {
   const SplashWidget({super.key});
 
@@ -133,7 +133,7 @@ class _SplashWidgetState extends State<SplashWidget> {
                       onTap: () {
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
-                            builder: (context) => HomePage(), // Replace HomePage with your actual widget
+                            builder: (context) => SignIn(), // Replace HomePage with your actual widget
                           ),
                         );
 

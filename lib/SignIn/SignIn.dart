@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'DashboardPage.dart';
-class HomePage extends StatefulWidget {
+import '../DashboardPage.dart';
+class SignIn extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _SignInState createState() => _SignInState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _SignInState extends State<SignIn> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();

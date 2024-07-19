@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'IdentifyMedicationPage.dart';
+import 'IdentifyMed/IdentifyMedicationPage.dart';
 import 'MedicationPlanner/MedDashboard.dart';
 class DashboardPage extends StatelessWidget {
   @override
