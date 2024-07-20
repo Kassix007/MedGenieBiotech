@@ -10,9 +10,11 @@ class ArtPiecePageWidget extends StatefulWidget {
   const ArtPiecePageWidget({
     super.key,
     this.artPiece,
+    this.userId,
   });
 
   final dynamic artPiece;
+  final String? userId;
 
   @override
   State<ArtPiecePageWidget> createState() => _ArtPiecePageWidgetState();
@@ -40,8 +42,11 @@ class _ArtPiecePageWidgetState extends State<ArtPiecePageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<UsersRecord>(
-      stream: UsersRecord.getDocument(currentUserReference!),
+    return StreamBuilder<DocumentSnapshot>(
+      stream: FirebaseFirestore.instance
+          .collection('users')
+          .doc(widget.userId)
+          .snapshots(),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -61,7 +66,8 @@ class _ArtPiecePageWidgetState extends State<ArtPiecePageWidget> {
           );
         }
 
-        final artPiecePageUsersRecord = snapshot.data!;
+        final userData = snapshot.data!.data() as Map<String, dynamic>;
+        final List<dynamic> favorites = userData['favorites'] ?? [];
 
         return Scaffold(
           key: scaffoldKey,
@@ -98,22 +104,24 @@ class _ArtPiecePageWidgetState extends State<ArtPiecePageWidget> {
                     r'''$.objectID''',
                     true,
                   );
-                  final favoritesUpdate = artPiecePageUsersRecord.favorites
-                      .contains(favoritesElement)
+                  final favoritesUpdate = favorites.contains(favoritesElement)
                       ? FieldValue.arrayRemove([favoritesElement])
                       : FieldValue.arrayUnion([favoritesElement]);
-                  await artPiecePageUsersRecord.reference.update({
+                  await FirebaseFirestore.instance
+                      .collection('users')
+                      .doc(widget.userId)
+                      .update({
                     'favorites': favoritesUpdate,
                   });
                 },
                 icon: Icon(
-                  artPiecePageUsersRecord.favorites.contains(getJsonField(
+                  favorites.contains(getJsonField(
                     widget.artPiece,
                     r'''$.objectID''',
                   ))
                       ? Icons.favorite
                       : Icons.favorite_border,
-                  color: artPiecePageUsersRecord.favorites.contains(getJsonField(
+                  color: favorites.contains(getJsonField(
                     widget.artPiece,
                     r'''$.objectID''',
                   ))
@@ -311,7 +319,10 @@ class _ArtPiecePageWidgetState extends State<ArtPiecePageWidget> {
                     alignment: AlignmentDirectional(0, 0),
                     child: ElevatedButton.icon(
                       onPressed: () async {
-                        await currentUserReference!.update({
+                        await FirebaseFirestore.instance
+                            .collection('users')
+                            .doc(widget.userId)
+                            .update({
                           'favorites': FieldValue.arrayUnion([
                             getJsonField(
                               widget.artPiece,

@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:provider/provider.dart';
 
-import '../DashboardPage.dart';
+import '../home_widget.dart';
 import 'sign_in_model.dart';
 export 'sign_in_model.dart';
 
@@ -76,7 +76,7 @@ class _SignInWidgetState extends State<SignInWidget> {
 
         // Navigate to DashboardPage
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => DashboardPage()),
+          MaterialPageRoute(builder: (context) => HomeWidget()),
         );
 
       } on FirebaseAuthException catch (e) {
