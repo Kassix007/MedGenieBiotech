@@ -3,7 +3,10 @@ import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:test_drive/PlannerAyu/planner_ayu_widget.dart';
 
+import 'ChatWithMe/chatwithme_widget.dart';
+import 'DoctorsNearby/doc_widget.dart';
 import 'IdentifyMed/IdentifyMedicationPage.dart';
 import 'MedicationPlanner/MedDashboard.dart';
 import 'home_model.dart';
@@ -96,7 +99,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                       'Med Planner',
                       Icons.edit_calendar,
                       Colors.green,
-                      DashboardWidget(), // Replace with your page widget
+                      PlannerAyuWidget(), // Replace with your page widget
                     ),
                     buildCard(
                       context,
@@ -117,14 +120,14 @@ class _HomeWidgetState extends State<HomeWidget> {
                       'Doctors Nearby',
                       Icons.assignment_ind_rounded,
                       Colors.purple,
-                      null, // Replace with your page widget
+                      DocWidget(), // Replace with your page widget
                     ),
                     buildCard(
                       context,
                       'Chat with me',
                       FontAwesomeIcons.robot,
                       Colors.teal,
-                      null, // Replace with your page widget
+                      ChatwithmeWidget(), // Replace with your page widget
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 24),
